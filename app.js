@@ -1,15 +1,16 @@
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
-const logger = require('body-parser');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
 
-const book = require('./route/book');
+const book = require('./routes/book');
 const app = express();
 
 app.use(logger('div'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
-ap.use(express.static(path.join(__dirname,'dist')));
+app.use(express.static(path.join(__dirname,'dist')));
 app.use('/books', express.static(path.join(__dirname,'dist')));
 app.use('/book', book);
 

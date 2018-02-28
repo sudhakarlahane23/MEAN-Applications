@@ -33,7 +33,7 @@ server.on('listening',onListening);
 function normalizePort(val) {
     var port = parseInt(val,10);
 
-    if(isNan(port)) {
+    if(isNaN(port)) {
         // named pipe
         return val;
     }
@@ -76,7 +76,7 @@ function normalizePort(val) {
   function onListening() {
       var addr = server.address();
       var bind = typeof addr === 'string' ? 'Pipe ' + addr : 'Port ' + addr.port;
-      degug('Listening on ' + bind);
+      debug('Listening on ' + bind);
   }
 
   // To meke the server ru from bind/www, open and edit 'package.json' then replace start value.
