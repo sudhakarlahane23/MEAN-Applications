@@ -64,6 +64,11 @@ function normalizePort(val) {
          process.exit(1);
          break;
 
+         case 'EADDRINUSE':
+         console.error(bing + " is already in use!");
+         process.exit(1);
+         break;
+
          default: 
          throw error;
      }
@@ -79,7 +84,7 @@ function normalizePort(val) {
       debug('Listening on ' + bind);
   }
 
-  // To meke the server ru from bind/www, open and edit 'package.json' then replace start value.
+  // To meke the server run from bind/www, open and edit 'package.json' then replace start value.
   /* "scripts": {
     "ng": "ng",
     "start": "ng build && node ./bin/www",
