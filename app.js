@@ -4,6 +4,27 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
+// var mongoose = require('mongoose');
+// mongoose.Promise = require('bluebird');
+// mongoose.connect('mongodb://localhost/mean-angular5', { useMongoClient: true, promiseLibrary: require('bluebird') })
+//   .then(() =>  console.log('connection succesful'))
+//   .catch((err) => console.error(err));
+
+const MongoClient = require('mongodb').MongoClient;
+const url = 'mongodb://localhost:27017/';
+
+MongoClient.connect(url, function(err, db) {
+    if(err) {
+        throw err;
+    } else {
+        const dbo = db.db('mydb');
+        dbo.collection('products').find({}).toArray(function(err, result) {
+            console.log(result);
+            db.close();
+        })
+    }
+})
+
 const book = require('./routes/book');
 const app = express();
 
